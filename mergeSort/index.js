@@ -16,34 +16,16 @@ function mergeSort(arr) {
 
 function sorter(arr1, arr2) {
 	let newArr = [];
-	for (let i = 0; i < arr1.length; i++) {
-		let prevLength = [arr2.length, arr2.length];
-		let l = 0;
-		while (arr2.length !== 0 && arr1.length !== 0) {
-			if (prevLength[1] !== arr2.length) {
-				prevLength[1] = arr2.length;
-				l -= 1;
-			}
-			if (prevLength[0] !== arr1.length) {
-				prevLength[0] = arr1.length;
-				l = 0;
-			}
-			if (arr1[i] > arr2[l]) {
-				newArr.push(...arr2.splice(l, 1));
-			} else if (arr1[i] === arr2[l]) {
-				newArr = newArr.concat([
-					...arr1.splice(i, 1),
-					...arr2.splice(l, 1),
-				]);
-			} else {
-				newArr.push(...arr1.splice(i, 1));
-			}
-			++l;
+	while (arr2.length !== 0 && arr1.length !== 0) {
+		if (arr1[0] > arr2[0]) {
+			newArr.push(arr2.shift());
+		} else if (arr1[0] === arr2[0]) {
+			newArr = newArr.concat([arr1.shift(), arr2.shift()]);
+		} else {
+			newArr.push(arr1.shift());
 		}
 	}
-	if (arr2.length === 0) return newArr.concat(arr1);
-	if (arr1.length === 0) return newArr.concat(arr2);
-	return newArr;
+	return [...newArr, ...arr1, ...arr2];
 }
 
 // console.log(sorter([3, 4, 6, 8], [1, 2, 3]));
