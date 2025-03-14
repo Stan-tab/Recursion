@@ -49,7 +49,7 @@ function mergeSort(arr) {
 	} else if (arr.length == 2) {
 		let newArr = [];
 		if (arr[0].length === 0 || arr[1].length === 0)
-			return [...newArr, ...arr[0], ...arr[1]];
+			return [...arr[0], ...arr[1]];
 		if (arr[0][0] > arr[1][0]) {
 			newArr.push(arr[1].shift());
 		} else if (arr[0][0] === arr[1][0]) {
